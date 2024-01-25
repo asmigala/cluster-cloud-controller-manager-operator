@@ -54,6 +54,8 @@ spec:
           env:
             - name: CLOUD_CONFIG
               value: /etc/openstack/config/cloud.conf
+            - name: OCP_INFRASTRUCTURE_NAME
+              value: {{ .infrastructureName }}
           command:
           - /bin/bash
           - -c
@@ -70,6 +72,7 @@ spec:
             --use-service-account-credentials=true \
             --configure-cloud-routes=false \
             --bind-address=127.0.0.1 \
+            --cluster-name=$(OCP_INFRASTRUCTURE_NAME) \
             --leader-elect=true \
             --leader-elect-lease-duration=137s \
             --leader-elect-renew-deadline=107s \
